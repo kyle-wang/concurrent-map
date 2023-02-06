@@ -15,7 +15,7 @@ func main() {
     fmt.Println(testMap.Load(2))
     b := testMap.Load(3)
     if b == nil {
-        fmt.Println("NIL")
+        fmt.Println("Nil")
     } else {
         fmt.Println("Not Nil")
     }

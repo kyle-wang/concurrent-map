@@ -33,17 +33,14 @@ func (c *ConcurrentMap[mapKey, mapValue]) Range(fn func(key mapKey, value mapVal
 	c.oriMap.Range(func(key, value any) bool {
 		k := key.(mapKey)
 		v := value.(mapValue)
-		if fn(k, v) {
-			return true
-		}
-		return false
+		return fn(k, v)
 	})
 }
 
 // Len 采用遍历的方式获取数量，性能消耗较大
 func (c *ConcurrentMap[mapKey, mapValue]) Len() int32 {
 	var count int32
-	c.Range(func(key mapKey, value mapValue) bool {
+	c.oriMap.Range(func(key any, value any) bool {
 		count++
 		return true
 	})
